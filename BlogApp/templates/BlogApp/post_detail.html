@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ post.title }}</title>
+</head>
+<body>
+    <h1>{{ post.title }}</h1>
+    <p><strong>Author:</strong> {{ post.author }}</p>
+    <p><strong>Published on:</strong> {{ post.created_at|date:"F j, Y, g:i a" }}</p>
+    <p>{{ post.content }}</p>
+
+    <a href="{% url 'post_edit' post.pk %}">Edit Post</a>
+
+    <a href="{% url 'home' %}">Back to Home</a>
+</body>
+</html>

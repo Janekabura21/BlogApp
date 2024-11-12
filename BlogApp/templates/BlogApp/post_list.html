@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Blog Home</title>
+</head>
+<body>
+    <h1>Blog Posts</h1>
+
+    {% if user.is_authenticated %}
+        <a href="{% url 'logout' %}">Logout</a>  
+    {% else %}
+        <a href="{% url 'login' %}">Login</a>
+
+        {% endif %}
+
+    <a href="{% url 'post_create' %}">Create New Post</a>
+    
+
+
+    <ul>
+        {% for post in posts %}
+            <li>
+                <a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a>
+                <p>{{ post.content|truncatewords:20}}</p>
+                <p><strong>Author:</strong> {{ post.author }}</p>
+                <p><strong>Published on:</strong> {{ post.created_at|date:"F j, Y" }}</p>
+                <a href="{% url 'post_edit' post.pk %}">Edit</a>
+                <a href="{% url 'post_delete' post.pk %}">Delete</a>
+
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog Home</title>
+</head>
+<body>
+    <h1>Blog Posts</h1>
+    <ul>
+        {% for post in posts %}
+            <li>
+                <h2>{{ post.title }}</h2>
+                <p><strong>Author:</strong> {{ post.author }}</p>
+                <p><strong>Published:</strong> {{ post.created_at|date:"F d, Y" }}</p>
+                <p>{{ post.content|truncatewords:30 }}</p>
+                <hr>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html> -->
